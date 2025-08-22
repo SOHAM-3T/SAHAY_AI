@@ -22,8 +22,12 @@ def home(request):
 def upload_resume(request):
     """Handle resume upload"""
     if request.method == 'POST':
+        print(f"DEBUG: POST request received")
+        print(f"DEBUG: Files in request: {list(request.FILES.keys())}")
+        
         if 'resume' in request.FILES:
             resume_file = request.FILES['resume']
+            print(f"DEBUG: Resume file found: {resume_file.name}")
             
             # Save file temporarily
             file_path = os.path.join('media', 'resumes', resume_file.name)
@@ -33,11 +37,15 @@ def upload_resume(request):
                 for chunk in resume_file.chunks():
                     destination.write(chunk)
             
+            print(f"DEBUG: File saved to: {file_path}")
+            
             # Initialize RAG pipeline
             if rag_service.initialize_rag(file_path):
+                print(f"DEBUG: RAG pipeline initialized successfully")
                 messages.success(request, 'Resume uploaded and AI analysis initialized successfully!')
                 return redirect('career_advisor:analyze_resume')
             else:
+                print(f"DEBUG: RAG pipeline failed, trying fallback")
                 # Fallback to basic parsing if RAG fails
                 try:
                     import sys
@@ -52,13 +60,20 @@ def upload_resume(request):
                     request.session['resume_data'] = parsed_data
                     request.session['resume_file'] = file_path
                     
+                    print(f"DEBUG: Fallback parsing successful")
                     messages.warning(request, 'Resume uploaded with basic analysis. AI features may be limited.')
                     return redirect('career_advisor:analyze_resume')
                     
                 except Exception as e:
+                    print(f"DEBUG: Error in fallback parsing: {e}")
                     messages.error(request, f'Error processing resume: {str(e)}')
                     return redirect('career_advisor:home')
+        else:
+            print(f"DEBUG: No resume file in request")
+            messages.error(request, 'No resume file uploaded.')
+            return redirect('career_advisor:upload_resume')
     
+    print(f"DEBUG: GET request, rendering upload form")
     return render(request, 'career_advisor/upload.html')
 
 def analyze_resume(request):

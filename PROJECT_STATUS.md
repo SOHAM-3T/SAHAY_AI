@@ -1,7 +1,7 @@
-# 🚀 AI Career Mentor - Project Status Report
+# 🚀 Sahay AI - Project Status Report
 
 ## 🎯 **Project Overview**
-**AI-360 Career Mentor** - An intelligent resume parser and career advisor powered by RAG (Retrieval Augmented Generation) technology.
+**Sahay AI** - An intelligent resume parser and career advisor powered by RAG (Retrieval Augmented Generation) technology.
 
 ## ✅ **System Status: OPERATIONAL**
 
@@ -110,7 +110,7 @@
 
 ### **📁 Project Structure**
 ```
-AI-Career-Mentor/
+Sahay-AI/
 ├── career_mentor_web/          # Django project
 ├── career_advisor/             # Main Django app
 ├── src/
@@ -158,6 +158,6 @@ AI-Career-Mentor/
 
 ## 🎉 **Project Status: READY FOR HACKATHON DEMO!**
 
-**Your AI Career Mentor is fully operational and ready to impress the judges!**
+**Your Sahay AI is fully operational and ready to impress the judges!**
 
 **Access your application at: http://127.0.0.1:8000** 

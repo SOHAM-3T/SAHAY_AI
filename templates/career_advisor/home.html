@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
 
-{% block title %}AI-360 Career Mentor - Your AI Career Advisor{% endblock %}
+{% block title %}Sahay AI - Your AI Career Advisor{% endblock %}
 
 {% block content %}
 <!-- Hero Section -->
 <div class="hero-section">
-    <h1><i class="fas fa-robot"></i> AI-360 Career Mentor</h1>
+    <h1><i class="fas fa-robot"></i> Sahay AI</h1>
     <p>Your AI-powered career advisor that analyzes resumes and provides personalized guidance</p>
     <a href="{% url 'career_advisor:upload_resume' %}" class="btn btn-primary btn-lg">
         <i class="fas fa-upload"></i> Get Started - Upload Resume
@@ -125,54 +125,18 @@
     </div>
 </div>
 
-<!-- Call to Action -->
+<!-- Quick Start Section -->
 <div class="row mt-5">
     <div class="col-12 text-center">
         <div class="feature-card">
-            <h3>Ready to Transform Your Career?</h3>
-            <p class="lead">Join thousands of professionals who are using AI to advance their careers</p>
+            <h3>Ready to Get Started?</h3>
+            <p class="lead">Upload your resume and experience the power of AI-driven career guidance</p>
             <a href="{% url 'career_advisor:upload_resume' %}" class="btn btn-primary btn-lg me-3">
                 <i class="fas fa-upload"></i> Upload Resume Now
             </a>
             <a href="{% url 'career_advisor:career_chat' %}" class="btn btn-outline-primary btn-lg">
                 <i class="fas fa-comments"></i> Ask Career Questions
             </a>
-        </div>
-    </div>
-</div>
-
-<!-- Stats Section -->
-<div class="row mt-5">
-    <div class="col-12">
-        <h2 class="text-center mb-4">Why Choose AI-360 Career Mentor?</h2>
-        <div class="row">
-            <div class="col-md-3">
-                <div class="stats-card">
-                    <div class="stats-number">47+</div>
-                    <div>Skills Analyzed</div>
-                </div>
-            </div>
-            
-            <div class="col-md-3">
-                <div class="stats-card">
-                    <div class="stats-number">16+</div>
-                    <div>Projects Identified</div>
-                </div>
-            </div>
-            
-            <div class="col-md-3">
-                <div class="stats-card">
-                    <div class="stats-number">5+</div>
-                    <div>Career Paths</div>
-                </div>
-            </div>
-            
-            <div class="col-md-3">
-                <div class="stats-card">
-                    <div class="stats-number">24/7</div>
-                    <div>AI Support</div>
-                </div>
-            </div>
         </div>
     </div>
 </div>

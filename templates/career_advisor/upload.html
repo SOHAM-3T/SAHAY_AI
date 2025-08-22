@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}Upload Resume - AI-360 Career Mentor{% endblock %}
+{% block title %}Upload Resume - Sahay AI{% endblock %}
 
 {% block content %}
 <div class="row">
@@ -14,36 +14,32 @@
 
 <div class="row justify-content-center">
     <div class="col-md-8">
-        <div class="upload-area" id="uploadArea">
-            <i class="fas fa-cloud-upload-alt" style="font-size: 4rem; color: var(--primary-color); margin-bottom: 20px;"></i>
-            <h4>Drag & Drop Your Resume</h4>
-            <p class="text-muted">or click to browse files</p>
-            <p class="small text-muted">Supported format: PDF</p>
-            
+        <!-- Simple Upload Form -->
+        <div class="feature-card">
             <form method="post" enctype="multipart/form-data" id="uploadForm">
                 {% csrf_token %}
-                <input type="file" name="resume" id="resumeFile" accept=".pdf" style="display: none;">
-                <button type="button" class="btn btn-primary" onclick="document.getElementById('resumeFile').click()">
-                    <i class="fas fa-folder-open"></i> Choose File
-                </button>
+                
+                <div class="mb-4">
+                    <label for="resumeFile" class="form-label">
+                        <i class="fas fa-file-pdf"></i> Select Your Resume (PDF)
+                    </label>
+                    <input type="file" class="form-control" id="resumeFile" name="resume" accept=".pdf" required>
+                    <div class="form-text">Please upload a PDF file of your resume</div>
+                </div>
+                
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary btn-lg">
+                        <i class="fas fa-upload"></i> Upload & Analyze Resume
+                    </button>
+                </div>
             </form>
         </div>
         
-        <div id="fileInfo" style="display: none;" class="mt-3">
-            <div class="alert alert-info">
-                <i class="fas fa-file-pdf"></i>
-                <span id="fileName"></span>
-                <button type="button" class="btn btn-success btn-sm ms-3" onclick="submitForm()">
-                    <i class="fas fa-upload"></i> Upload & Analyze
-                </button>
-            </div>
-        </div>
-        
+        <!-- Upload Progress (will be shown via JavaScript) -->
         <div id="uploadProgress" style="display: none;" class="mt-3">
-            <div class="progress">
-                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 0%"></div>
+            <div class="alert alert-info text-center">
+                <i class="fas fa-spinner fa-spin"></i> Analyzing your resume... Please wait.
             </div>
-            <p class="text-center mt-2">Analyzing your resume...</p>
         </div>
     </div>
 </div>
@@ -93,26 +89,26 @@
             <div class="row">
                 <div class="col-md-3 text-center">
                     <div class="stats-card">
-                        <div class="stats-number">47</div>
+                        <div class="stats-number">33</div>
                         <div>Skills</div>
                     </div>
                 </div>
                 <div class="col-md-3 text-center">
                     <div class="stats-card">
-                        <div class="stats-number">16</div>
+                        <div class="stats-number">3</div>
                         <div>Projects</div>
                     </div>
                 </div>
                 <div class="col-md-3 text-center">
                     <div class="stats-card">
-                        <div class="stats-number">5</div>
+                        <div class="stats-number">2</div>
                         <div>Education</div>
                     </div>
                 </div>
                 <div class="col-md-3 text-center">
                     <div class="stats-card">
-                        <div class="stats-number">0</div>
-                        <div>Experience</div>
+                        <div class="stats-number">75%</div>
+                        <div>Complete</div>
                     </div>
                 </div>
             </div>
@@ -123,98 +119,18 @@
 
 {% block extra_js %}
 <script>
-// Drag and drop functionality
-const uploadArea = document.getElementById('uploadArea');
-const fileInput = document.getElementById('resumeFile');
-const fileInfo = document.getElementById('fileInfo');
-const fileName = document.getElementById('fileName');
-const uploadProgress = document.getElementById('uploadProgress');
-
-// Prevent default drag behaviors
-['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
-    uploadArea.addEventListener(eventName, preventDefaults, false);
-    document.body.addEventListener(eventName, preventDefaults, false);
-});
-
-// Highlight drop area when item is dragged over it
-['dragenter', 'dragover'].forEach(eventName => {
-    uploadArea.addEventListener(eventName, highlight, false);
-});
-
-['dragleave', 'drop'].forEach(eventName => {
-    uploadArea.addEventListener(eventName, unhighlight, false);
-});
-
-// Handle dropped files
-uploadArea.addEventListener('drop', handleDrop, false);
-
-function preventDefaults(e) {
-    e.preventDefault();
-    e.stopPropagation();
-}
-
-function highlight(e) {
-    uploadArea.style.borderColor = 'var(--secondary-color)';
-    uploadArea.style.background = 'rgba(118, 75, 162, 0.1)';
-}
-
-function unhighlight(e) {
-    uploadArea.style.borderColor = 'var(--primary-color)';
-    uploadArea.style.background = 'rgba(102, 126, 234, 0.05)';
-}
-
-function handleDrop(e) {
-    const dt = e.dataTransfer;
-    const files = dt.files;
-    handleFiles(files);
-}
-
-function handleFiles(files) {
-    if (files.length > 0) {
-        const file = files[0];
-        if (file.type === 'application/pdf') {
-            fileInput.files = files;
-            showFileInfo(file.name);
-        } else {
-            alert('Please upload a PDF file.');
-        }
-    }
-}
-
-// File input change
-fileInput.addEventListener('change', function(e) {
-    if (e.target.files.length > 0) {
-        const file = e.target.files[0];
-        showFileInfo(file.name);
-    }
-});
-
-function showFileInfo(name) {
-    fileName.textContent = name;
-    fileInfo.style.display = 'block';
-    uploadArea.style.display = 'none';
-}
-
-function submitForm() {
-    uploadProgress.style.display = 'block';
-    fileInfo.style.display = 'none';
+// Simple form submission with progress indicator
+document.getElementById('uploadForm').addEventListener('submit', function(e) {
+    // Show progress indicator
+    document.getElementById('uploadProgress').style.display = 'block';
     
-    // Simulate progress
-    const progressBar = document.querySelector('.progress-bar');
-    let progress = 0;
-    const interval = setInterval(() => {
-        progress += 10;
-        progressBar.style.width = progress + '%';
-        if (progress >= 100) {
-            clearInterval(interval);
-            document.getElementById('uploadForm').submit();
-        }
-    }, 200);
-}
-
-// Click to upload
-uploadArea.addEventListener('click', function() {
-    fileInput.click();
+    // Disable submit button to prevent double submission
+    const submitBtn = this.querySelector('button[type="submit"]');
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Uploading...';
+    
+    // Form will submit normally
+    console.log('Form submitting...');
 });
 </script>
 {% endblock %} 
