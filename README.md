@@ -125,11 +125,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-⚡️ *Built with love in 24 hours during Forge Inspira Hackathon*
+⚡️ *Built in 24 hours during Forge Inspira Hackathon*
 
-# ---
-
-# 
-
-# ⚡️ \*Built with love in 24 hours during Forge Inspira Hackathon\*
 
