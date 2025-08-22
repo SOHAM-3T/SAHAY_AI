@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title %}Skills Gap Analysis - AI-360 Career Mentor{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h2 class="text-center mb-4">
+            <i class="fas fa-search"></i> Skills Gap Analysis
+        </h2>
+        <p class="text-center lead">Identify what skills you need to develop for your target role</p>
+    </div>
+</div>
+
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="feature-card">
+            <h4 class="text-center mb-4">Select Your Target Role</h4>
+            
+            <form method="post">
+                {% csrf_token %}
+                <div class="mb-4">
+                    <label for="target_role" class="form-label">Choose the role you want to pursue:</label>
+                    <select name="target_role" id="target_role" class="form-select form-select-lg">
+                        <option value="Data Scientist">Data Scientist</option>
+                        <option value="Software Engineer">Software Engineer</option>
+                        <option value="Product Manager">Product Manager</option>
+                        <option value="Data Analyst">Data Analyst</option>
+                        <option value="ML Engineer">ML Engineer</option>
+                        <option value="Full Stack Developer">Full Stack Developer</option>
+                        <option value="DevOps Engineer">DevOps Engineer</option>
+                    </select>
+                </div>
+                
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary btn-lg">
+                        <i class="fas fa-search"></i> Analyze Skills Gap
+                    </button>
+                </div>
+            </form>
+        </div>
+        
+        <div class="feature-card mt-4">
+            <h5><i class="fas fa-info-circle"></i> What You'll Get</h5>
+            <ul>
+                <li>Comparison of your current skills vs. required skills</li>
+                <li>Specific skills you need to develop</li>
+                <li>Personalized learning recommendations</li>
+                <li>Progress tracking for skill development</li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %} 

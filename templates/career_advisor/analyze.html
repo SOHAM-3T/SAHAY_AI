@@ -1,0 +1,222 @@
+{% extends 'base.html' %}
+
+{% block title %}Resume Analysis - AI-360 Career Mentor{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h2 class="text-center mb-4">
+            <i class="fas fa-chart-pie"></i> Resume Analysis Results
+        </h2>
+        <p class="text-center lead">Your resume has been analyzed successfully! Here's what we found:</p>
+        
+        {% if rag_available %}
+        <div class="alert alert-success text-center">
+            <i class="fas fa-robot"></i> <strong>AI-Powered Analysis:</strong> Your resume has been processed through our advanced RAG pipeline for intelligent insights!
+        </div>
+        {% else %}
+        <div class="alert alert-info text-center">
+            <i class="fas fa-info-circle"></i> <strong>Basic Analysis:</strong> Using standard resume parsing techniques
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<!-- Resume Summary Stats -->
+<div class="row mb-4">
+    <div class="col-md-3">
+        <div class="stats-card">
+            <div class="stats-number">{{ skills_count }}</div>
+            <div>Skills</div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="stats-card">
+            <div class="stats-number">{{ projects_count }}</div>
+            <div>Projects</div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="stats-card">
+            <div class="stats-number">{{ education_count }}</div>
+            <div>Education</div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="stats-card">
+            <div class="stats-number">{{ experience_count }}</div>
+            <div>Experience</div>
+        </div>
+    </div>
+</div>
+
+<!-- Skills Breakdown -->
+<div class="row">
+    <div class="col-md-6">
+        <div class="feature-card">
+            <h4><i class="fas fa-tools"></i> Skills Breakdown</h4>
+            <p>Your resume contains <strong>{{ skills_count }} skills</strong> across various domains.</p>
+            
+            {% if resume_data.skills %}
+            <div class="skills-container">
+                <h6>Top Skills:</h6>
+                <div class="d-flex flex-wrap">
+                    {% for skill in resume_data.skills|slice:":15" %}
+                    <span class="badge bg-primary me-2 mb-2">{{ skill }}</span>
+                    {% endfor %}
+                </div>
+                {% if resume_data.skills|length > 15 %}
+                <p class="text-muted mt-2">... and {{ resume_data.skills|length|add:"-15" }} more skills</p>
+                {% endif %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    
+    <div class="col-md-6">
+        <div class="feature-card">
+            <h4><i class="fas fa-project-diagram"></i> Project Portfolio</h4>
+            <p>Your resume showcases <strong>{{ projects_count }} projects</strong> demonstrating your technical abilities.</p>
+            
+            {% if resume_data.projects %}
+            <div class="projects-container">
+                <h6>Sample Projects:</h6>
+                <ul class="list-unstyled">
+                    {% for project in resume_data.projects|slice:":5" %}
+                    <li class="mb-2">
+                        <i class="fas fa-code text-primary"></i>
+                        {{ project|truncatechars:60 }}
+                    </li>
+                    {% endfor %}
+                </ul>
+                {% if resume_data.projects|length > 5 %}
+                <p class="text-muted">... and {{ resume_data.projects|length|add:"-5" }} more projects</p>
+                {% endif %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<!-- Education & Experience -->
+<div class="row mt-4">
+    <div class="col-md-6">
+        <div class="feature-card">
+            <h4><i class="fas fa-graduation-cap"></i> Educational Background</h4>
+            <p>Your resume shows <strong>{{ education_count }} education entries</strong>.</p>
+            
+            {% if resume_data.education %}
+            <div class="education-container">
+                {% for edu in resume_data.education|slice:":3" %}
+                <div class="mb-2 p-2 bg-light rounded">
+                    <i class="fas fa-university text-primary"></i>
+                    {{ edu|truncatechars:80 }}
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    
+    <div class="col-md-6">
+        <div class="feature-card">
+            <h4><i class="fas fa-briefcase"></i> Professional Experience</h4>
+            <p>Your resume contains <strong>{{ experience_count }} experience entries</strong>.</p>
+            
+            {% if resume_data.experience %}
+            <div class="experience-container">
+                {% for exp in resume_data.experience|slice:":3" %}
+                <div class="mb-2 p-2 bg-light rounded">
+                    <i class="fas fa-building text-primary"></i>
+                    {{ exp|truncatechars:80 }}
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <p class="text-muted">No work experience entries found in your resume.</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<!-- AI Insights Section -->
+{% if rag_available %}
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="feature-card">
+            <h4><i class="fas fa-robot text-primary"></i> AI-Powered Insights</h4>
+            <div class="row">
+                <div class="col-md-6">
+                    <h6><i class="fas fa-brain"></i> What AI Can Do:</h6>
+                    <ul>
+                        <li>Analyze skills gaps for specific roles</li>
+                        <li>Provide personalized career advice</li>
+                        <li>Suggest relevant learning paths</li>
+                        <li>Answer career questions intelligently</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <h6><i class="fas fa-chart-line"></i> Your AI Profile:</h6>
+                    <ul>
+                        <li><strong>Skills Analyzed:</strong> {{ skills_count }} technical skills</li>
+                        <li><strong>Projects Evaluated:</strong> {{ projects_count }} portfolio items</li>
+                        <li><strong>Background Understood:</strong> Education & experience context</li>
+                        <li><strong>AI Ready:</strong> Ready for intelligent career guidance</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+<!-- Action Buttons -->
+<div class="row mt-5">
+    <div class="col-12 text-center">
+        <h4>What would you like to do next?</h4>
+        <div class="d-flex justify-content-center flex-wrap gap-3">
+            <a href="{% url 'career_advisor:skills_gap_analysis' %}" class="btn btn-primary btn-lg">
+                <i class="fas fa-search"></i> Analyze Skills Gap
+            </a>
+            <a href="{% url 'career_advisor:career_paths' %}" class="btn btn-outline-primary btn-lg">
+                <i class="fas fa-route"></i> Explore Career Paths
+            </a>
+            <a href="{% url 'career_advisor:career_chat' %}" class="btn btn-outline-primary btn-lg">
+                <i class="fas fa-comments"></i> Ask Career Questions
+            </a>
+            <a href="{% url 'career_advisor:learning_roadmap' %}" class="btn btn-outline-primary btn-lg">
+                <i class="fas fa-map"></i> View Learning Roadmap
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Insights -->
+<div class="row mt-5">
+    <div class="col-12">
+        <div class="feature-card">
+            <h4><i class="fas fa-lightbulb"></i> Career Insights</h4>
+            <div class="row">
+                <div class="col-md-6">
+                    <h6>Strengths:</h6>
+                    <ul>
+                        <li>Strong technical foundation with {{ skills_count }} skills</li>
+                        <li>Active project portfolio with {{ projects_count }} projects</li>
+                        <li>Solid educational background</li>
+                        <li>Well-rounded skill set for tech roles</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <h6>Recommendations:</h6>
+                    <ul>
+                        <li>Use skills gap analysis to identify target role requirements</li>
+                        <li>Explore career paths that align with your background</li>
+                        <li>Get personalized learning recommendations</li>
+                        <li>Ask specific career questions for tailored advice</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

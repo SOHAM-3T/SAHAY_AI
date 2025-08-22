@@ -1,0 +1,189 @@
+{% extends 'base.html' %}
+
+{% block title %}Skills Gap Analysis - AI-360 Career Mentor{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h2 class="text-center mb-4">
+            <i class="fas fa-search"></i> Skills Gap Analysis Results
+        </h2>
+        <p class="text-center lead">Analysis for <strong>{{ target_role }}</strong> role</p>
+        
+        {% if rag_used %}
+        <div class="alert alert-success text-center">
+            <i class="fas fa-robot"></i> <strong>AI-Powered Analysis:</strong> This analysis was generated using our advanced RAG pipeline!
+        </div>
+        {% else %}
+        <div class="alert alert-info text-center">
+            <i class="fas fa-info-circle"></i> <strong>Rule-Based Analysis:</strong> Using predefined career guidelines
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<!-- Analysis Summary -->
+<div class="row mb-4">
+    <div class="col-md-4">
+        <div class="stats-card">
+            <div class="stats-number">{{ analysis.current_skills|length }}</div>
+            <div>Your Skills</div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="stats-card">
+            <div class="stats-number">{{ analysis.missing_skills|length }}</div>
+            <div>Skills to Develop</div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="stats-card">
+            <div class="stats-number">{{ analysis.recommendations|length }}</div>
+            <div>Recommendations</div>
+        </div>
+    </div>
+</div>
+
+<!-- Current Skills -->
+<div class="row mb-4">
+    <div class="col-md-6">
+        <div class="feature-card">
+            <h4><i class="fas fa-check-circle text-success"></i> Your Current Skills</h4>
+            <p>Skills you already have that are relevant for {{ target_role }}:</p>
+            
+            {% if analysis.current_skills %}
+            <div class="skills-container">
+                <div class="d-flex flex-wrap">
+                    {% for skill in analysis.current_skills %}
+                    <span class="badge bg-success me-2 mb-2">{{ skill }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+            {% else %}
+            <p class="text-muted">No relevant skills found in your resume.</p>
+            {% endif %}
+        </div>
+    </div>
+    
+    <div class="col-md-6">
+        <div class="feature-card">
+            <h4><i class="fas fa-exclamation-triangle text-warning"></i> Skills to Develop</h4>
+            <p>Skills you need to acquire for {{ target_role }}:</p>
+            
+            {% if analysis.missing_skills %}
+            <div class="skills-container">
+                <div class="d-flex flex-wrap">
+                    {% for skill in analysis.missing_skills %}
+                    <span class="badge bg-warning text-dark me-2 mb-2">{{ skill }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+            {% else %}
+            <p class="text-success">Great! You have all the required skills for this role.</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<!-- AI-Generated Recommendations -->
+{% if analysis.recommendations %}
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="feature-card">
+            <h4><i class="fas fa-lightbulb text-primary"></i> Personalized Recommendations</h4>
+            <p>Here's how to develop the missing skills:</p>
+            
+            <div class="recommendations-list">
+                {% for recommendation in analysis.recommendations %}
+                <div class="recommendation-item mb-3 p-3 border-start border-primary border-4 bg-light">
+                    <i class="fas fa-arrow-right text-primary me-2"></i>
+                    {{ recommendation }}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+<!-- AI Insights -->
+{% if rag_used and analysis.answer %}
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="feature-card">
+            <h4><i class="fas fa-robot text-primary"></i> AI Career Insights</h4>
+            <div class="ai-response p-3 bg-primary bg-opacity-10 rounded">
+                <p class="mb-0"><strong>AI Analysis:</strong> {{ analysis.answer }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+<!-- Action Plan -->
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="feature-card">
+            <h4><i class="fas fa-road text-primary"></i> Your Action Plan</h4>
+            <div class="row">
+                <div class="col-md-6">
+                    <h6><i class="fas fa-1"></i> Immediate Actions (Next 30 days)</h6>
+                    <ul>
+                        <li>Prioritize the top 2-3 missing skills</li>
+                        <li>Start with online courses or tutorials</li>
+                        <li>Set specific learning goals</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <h6><i class="fas fa-2"></i> Medium-term Goals (3-6 months)</h6>
+                    <ul>
+                        <li>Complete certification courses</li>
+                        <li>Build projects using new skills</li>
+                        <li>Practice through real-world applications</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Next Steps -->
+<div class="row mt-5">
+    <div class="col-12 text-center">
+        <h4>What would you like to do next?</h4>
+        <div class="d-flex justify-content-center flex-wrap gap-3">
+            <a href="{% url 'career_advisor:learning_roadmap' %}" class="btn btn-primary btn-lg">
+                <i class="fas fa-map"></i> View Learning Roadmap
+            </a>
+            <a href="{% url 'career_advisor:career_chat' %}" class="btn btn-outline-primary btn-lg">
+                <i class="fas fa-comments"></i> Ask Career Questions
+            </a>
+            <a href="{% url 'career_advisor:career_paths' %}" class="btn btn-outline-primary btn-lg">
+                <i class="fas fa-route"></i> Explore Other Career Paths
+            </a>
+            <a href="{% url 'career_advisor:skills_gap_analysis' %}" class="btn btn-outline-secondary btn-lg">
+                <i class="fas fa-search"></i> Analyze Different Role
+            </a>
+        </div>
+    </div>
+</div>
+
+<style>
+.recommendation-item {
+    transition: all 0.3s ease;
+}
+
+.recommendation-item:hover {
+    transform: translateX(5px);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.ai-response {
+    border-left: 4px solid var(--primary-color);
+}
+
+.border-start {
+    border-left-width: 4px !important;
+}
+</style>
+{% endblock %} 

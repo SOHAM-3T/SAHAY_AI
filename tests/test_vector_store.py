@@ -2,6 +2,7 @@ from src.utils.pdf_parser import extract_text_from_pdf
 from src.utils.resume_parser import parse_resume
 from src.rag.vector_store import create_vector_store
 
+
 def main():
     pdf_path = "data/Resume.pdf"
     raw_text = extract_text_from_pdf(pdf_path)
@@ -23,6 +24,7 @@ def main():
     print("🔍 Retrieved Chunks:")
     for doc in results:
         print("-", doc.page_content[:200], "...\n")
+
 
 if __name__ == "__main__":
     main()

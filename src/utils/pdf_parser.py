@@ -1,5 +1,6 @@
 import PyPDF2
 
+
 def extract_text_from_pdf(file_path: str) -> str:
     text = ""
     try:
@@ -11,6 +12,7 @@ def extract_text_from_pdf(file_path: str) -> str:
     except Exception as e:
         print(f"Error reading PDF: {e}")
     return text.strip()
+
 
 if __name__ == "__main__":
     pdf_path = "Resume.pdf"

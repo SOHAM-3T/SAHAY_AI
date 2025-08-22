@@ -1,0 +1,179 @@
+{% extends 'base.html' %}
+
+{% block title %}AI-360 Career Mentor - Your AI Career Advisor{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<div class="hero-section">
+    <h1><i class="fas fa-robot"></i> AI-360 Career Mentor</h1>
+    <p>Your AI-powered career advisor that analyzes resumes and provides personalized guidance</p>
+    <a href="{% url 'career_advisor:upload_resume' %}" class="btn btn-primary btn-lg">
+        <i class="fas fa-upload"></i> Get Started - Upload Resume
+    </a>
+</div>
+
+<!-- Features Section -->
+<div class="row">
+    <div class="col-md-4">
+        <div class="feature-card text-center">
+            <div class="feature-icon">
+                <i class="fas fa-file-pdf"></i>
+            </div>
+            <h4>Resume Analysis</h4>
+            <p>Upload your resume and get instant analysis of your skills, projects, and experience. Our AI extracts key information to provide personalized insights.</p>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="feature-card text-center">
+            <div class="feature-icon">
+                <i class="fas fa-search"></i>
+            </div>
+            <h4>Skills Gap Analysis</h4>
+            <p>Identify what skills you need to develop for your target role. Get specific recommendations for courses, resources, and learning paths.</p>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="feature-card text-center">
+            <div class="feature-icon">
+                <i class="fas fa-route"></i>
+            </div>
+            <h4>Career Path Suggestions</h4>
+            <p>Discover career paths that align with your current skills and background. Get insights into different roles and industries.</p>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-4">
+        <div class="feature-card text-center">
+            <div class="feature-icon">
+                <i class="fas fa-comments"></i>
+            </div>
+            <h4>AI Career Chat</h4>
+            <p>Ask questions about your career, skills, or job search. Get personalized advice and guidance from our AI career mentor.</p>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="feature-card text-center">
+            <div class="feature-icon">
+                <i class="fas fa-map"></i>
+            </div>
+            <h4>Learning Roadmap</h4>
+            <p>Get a structured learning path based on your current skills. Know exactly what to learn next to advance your career.</p>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="feature-card text-center">
+            <div class="feature-icon">
+                <i class="fas fa-chart-line"></i>
+            </div>
+            <h4>Progress Tracking</h4>
+            <p>Track your skills development and career progress. Visualize your growth and stay motivated on your career journey.</p>
+        </div>
+    </div>
+</div>
+
+<!-- How It Works Section -->
+<div class="row mt-5">
+    <div class="col-12">
+        <h2 class="text-center mb-4">How It Works</h2>
+        <div class="row">
+            <div class="col-md-3 text-center">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-upload"></i>
+                    </div>
+                    <h5>1. Upload Resume</h5>
+                    <p>Simply upload your resume in PDF format</p>
+                </div>
+            </div>
+            
+            <div class="col-md-3 text-center">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h5>2. AI Analysis</h5>
+                    <p>Our AI analyzes your skills and experience</p>
+                </div>
+            </div>
+            
+            <div class="col-md-3 text-center">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h5>3. Get Insights</h5>
+                    <p>Receive personalized career insights</p>
+                </div>
+            </div>
+            
+            <div class="col-md-3 text-center">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h5>4. Take Action</h5>
+                    <p>Follow recommendations to advance your career</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Call to Action -->
+<div class="row mt-5">
+    <div class="col-12 text-center">
+        <div class="feature-card">
+            <h3>Ready to Transform Your Career?</h3>
+            <p class="lead">Join thousands of professionals who are using AI to advance their careers</p>
+            <a href="{% url 'career_advisor:upload_resume' %}" class="btn btn-primary btn-lg me-3">
+                <i class="fas fa-upload"></i> Upload Resume Now
+            </a>
+            <a href="{% url 'career_advisor:career_chat' %}" class="btn btn-outline-primary btn-lg">
+                <i class="fas fa-comments"></i> Ask Career Questions
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Stats Section -->
+<div class="row mt-5">
+    <div class="col-12">
+        <h2 class="text-center mb-4">Why Choose AI-360 Career Mentor?</h2>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="stats-card">
+                    <div class="stats-number">47+</div>
+                    <div>Skills Analyzed</div>
+                </div>
+            </div>
+            
+            <div class="col-md-3">
+                <div class="stats-card">
+                    <div class="stats-number">16+</div>
+                    <div>Projects Identified</div>
+                </div>
+            </div>
+            
+            <div class="col-md-3">
+                <div class="stats-card">
+                    <div class="stats-number">5+</div>
+                    <div>Career Paths</div>
+                </div>
+            </div>
+            
+            <div class="col-md-3">
+                <div class="stats-card">
+                    <div class="stats-number">24/7</div>
+                    <div>AI Support</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

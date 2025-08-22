@@ -1,0 +1,234 @@
+{% extends 'base.html' %}
+
+{% block title %}Learning Roadmap - AI-360 Career Mentor{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h2 class="text-center mb-4">
+            <i class="fas fa-map"></i> Learning Roadmap
+        </h2>
+        <p class="text-center lead">Based on your current skills, here's a structured learning path to advance your career</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="feature-card">
+            <h4><i class="fas fa-road"></i> Your Learning Journey</h4>
+            
+            <div class="roadmap-container">
+                <!-- Python Path -->
+                {% if resume_data.skills %}
+                    {% if "python" in resume_data.skills|join:" "|lower %}
+                    <div class="roadmap-section mb-4">
+                        <h5><i class="fab fa-python text-primary"></i> Python Development Path</h5>
+                        <div class="roadmap-steps">
+                            <div class="step">
+                                <span class="step-number">1</span>
+                                <div class="step-content">
+                                    <h6>Advanced Python</h6>
+                                    <p>Decorators, Generators, Context Managers</p>
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-number">2</span>
+                                <div class="step-content">
+                                    <h6>Web Development</h6>
+                                    <p>Django, Flask, FastAPI</p>
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-number">3</span>
+                                <div class="step-content">
+                                    <h6>Data Science</h6>
+                                    <p>Pandas, NumPy, Matplotlib</p>
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-number">4</span>
+                                <div class="step-content">
+                                    <h6>Machine Learning</h6>
+                                    <p>Scikit-learn, TensorFlow, PyTorch</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                    
+                    <!-- Java Path -->
+                    {% if "java" in resume_data.skills|join:" "|lower %}
+                    <div class="roadmap-section mb-4">
+                        <h5><i class="fab fa-java text-primary"></i> Java Development Path</h5>
+                        <div class="roadmap-steps">
+                            <div class="step">
+                                <span class="step-number">1</span>
+                                <div class="step-content">
+                                    <h6>Advanced Java</h6>
+                                    <p>Collections, Streams, Lambda Expressions</p>
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-number">2</span>
+                                <div class="step-content">
+                                    <h6>Spring Framework</h6>
+                                    <p>Spring Boot, Spring MVC, Spring Security</p>
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-number">3</span>
+                                <div class="step-content">
+                                    <h6>Microservices</h6>
+                                    <p>Architecture, Docker, Kubernetes</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                    
+                    <!-- Data Path -->
+                    {% if "sql" in resume_data.skills|join:" "|lower %}
+                    <div class="roadmap-section mb-4">
+                        <h5><i class="fas fa-database text-primary"></i> Data Analysis Path</h5>
+                        <div class="roadmap-steps">
+                            <div class="step">
+                                <span class="step-number">1</span>
+                                <div class="step-content">
+                                    <h6>Advanced SQL</h6>
+                                    <p>Window Functions, CTEs, Performance</p>
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-number">2</span>
+                                <div class="step-content">
+                                    <h6>Data Visualization</h6>
+                                    <p>Tableau, Power BI, Python Libraries</p>
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-number">3</span>
+                                <div class="step-content">
+                                    <h6>Business Intelligence</h6>
+                                    <p>ETL, Data Warehousing, Analytics</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                {% endif %}
+                
+                <!-- General Path -->
+                <div class="roadmap-section">
+                    <h5><i class="fas fa-star text-primary"></i> General Career Development</h5>
+                    <div class="roadmap-steps">
+                        <div class="step">
+                            <span class="step-number">1</span>
+                            <div class="step-content">
+                                <h6>Build Portfolio</h6>
+                                <p>Create real-world projects, contribute to open source</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <span class="step-number">2</span>
+                            <div class="step-content">
+                                <h6>Networking</h6>
+                                <p>Attend tech meetups, join online communities</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <span class="step-number">3</span>
+                            <div class="step-content">
+                                <h6>Stay Updated</h6>
+                                <p>Follow industry trends, read tech blogs</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="feature-card">
+            <h5><i class="fas fa-chart-line"></i> Your Progress</h5>
+            <p><strong>Current Skills:</strong> {{ resume_data.skills|length }}</p>
+            <p><strong>Learning Areas:</strong> {{ roadmap.learning_areas|default:"3-4" }}</p>
+            <p><strong>Estimated Time:</strong> 6-12 months</p>
+        </div>
+        
+        <div class="feature-card mt-3">
+            <h5><i class="fas fa-lightbulb"></i> Tips for Success</h5>
+            <ul class="small">
+                <li>Focus on one path at a time</li>
+                <li>Build projects to apply knowledge</li>
+                <li>Practice regularly with coding challenges</li>
+                <li>Join study groups or find mentors</li>
+                <li>Track your progress and celebrate wins</li>
+            </ul>
+        </div>
+        
+        <div class="feature-card mt-3">
+            <h5><i class="fas fa-external-link-alt"></i> Resources</h5>
+            <ul class="small">
+                <li><a href="https://leetcode.com" target="_blank">LeetCode</a> - Coding practice</li>
+                <li><a href="https://coursera.org" target="_blank">Coursera</a> - Online courses</li>
+                <li><a href="https://github.com" target="_blank">GitHub</a> - Open source projects</li>
+                <li><a href="https://stackoverflow.com" target="_blank">Stack Overflow</a> - Q&A</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-12 text-center">
+        <a href="{% url 'career_advisor:skills_gap_analysis' %}" class="btn btn-primary btn-lg me-3">
+            <i class="fas fa-search"></i> Analyze Skills Gap
+        </a>
+        <a href="{% url 'career_advisor:career_paths' %}" class="btn btn-outline-primary btn-lg">
+            <i class="fas fa-route"></i> Explore Career Paths
+        </a>
+    </div>
+</div>
+
+<style>
+.roadmap-steps {
+    margin-left: 20px;
+}
+
+.step {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.step-number {
+    background: var(--primary-color);
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    margin-right: 15px;
+    flex-shrink: 0;
+}
+
+.step-content h6 {
+    margin: 0;
+    color: var(--primary-color);
+}
+
+.step-content p {
+    margin: 5px 0 0 0;
+    color: #666;
+}
+
+.roadmap-section {
+    border-left: 3px solid var(--primary-color);
+    padding-left: 20px;
+}
+</style>
+{% endblock %} 
