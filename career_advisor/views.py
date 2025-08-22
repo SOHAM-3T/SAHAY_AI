@@ -73,6 +73,9 @@ def analyze_resume(request):
             messages.warning(request, 'Please upload a resume first.')
             return redirect('career_advisor:home')
     
+    # Get cache info for performance monitoring
+    cache_info = rag_service.get_cache_info()
+    
     context = {
         'resume_data': resume_data,
         'skills_count': len(resume_data.get('skills', [])),
@@ -80,6 +83,7 @@ def analyze_resume(request):
         'education_count': len(resume_data.get('education', [])),
         'experience_count': len(resume_data.get('experience', [])),
         'rag_available': rag_service.is_available(),
+        'cache_info': cache_info,
     }
     
     return render(request, 'career_advisor/analyze.html', context)
@@ -183,6 +187,17 @@ def learning_roadmap(request):
     }
     
     return render(request, 'career_advisor/roadmap.html', context)
+
+def performance_status(request):
+    """Show RAG performance and caching status"""
+    cache_info = rag_service.get_cache_info()
+    
+    context = {
+        'cache_info': cache_info,
+        'rag_available': rag_service.is_available(),
+    }
+    
+    return render(request, 'career_advisor/performance.html', context)
 
 # Fallback functions (when RAG is not available)
 def analyze_skills_gap_fallback(resume_data, target_role):

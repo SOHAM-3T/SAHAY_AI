@@ -11,4 +11,5 @@ urlpatterns = [
     path('career-paths/', views.career_paths, name='career_paths'),
     path('chat/', views.career_chat, name='career_chat'),
     path('roadmap/', views.learning_roadmap, name='learning_roadmap'),
+    path('performance/', views.performance_status, name='performance_status'),
 ] 

@@ -1,0 +1,219 @@
+{% extends 'base.html' %}
+
+{% block title %}Performance Status - AI-360 Career Mentor{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h2 class="text-center mb-4">
+            <i class="fas fa-tachometer-alt"></i> AI Performance Status
+        </h2>
+        <p class="text-center lead">Monitor your RAG pipeline performance and optimization status</p>
+    </div>
+</div>
+
+<!-- Performance Overview -->
+<div class="row mb-4">
+    <div class="col-md-4">
+        <div class="stats-card">
+            <div class="stats-number">
+                {% if cache_info.rag_available %}
+                    <i class="fas fa-check-circle text-success"></i>
+                {% else %}
+                    <i class="fas fa-times-circle text-danger"></i>
+                {% endif %}
+            </div>
+            <div>RAG Status</div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="stats-card">
+            <div class="stats-number">{{ cache_info.cached_pipelines }}</div>
+            <div>Cached Pipelines</div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="stats-card">
+            <div class="stats-number">
+                {% if cache_info.global_model_loaded %}
+                    <i class="fas fa-check-circle text-success"></i>
+                {% else %}
+                    <i class="fas fa-times-circle text-danger"></i>
+                {% endif %}
+            </div>
+            <div>Model Loaded</div>
+        </div>
+    </div>
+</div>
+
+<!-- Model Information -->
+{% if cache_info.model_info %}
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="feature-card">
+            <h4><i class="fas fa-robot text-primary"></i> AI Model Details</h4>
+            <div class="row">
+                <div class="col-md-6">
+                    <table class="table table-borderless">
+                        <tr>
+                            <td><strong>Model:</strong></td>
+                            <td>{{ cache_info.model_info.model_name }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Parameters:</strong></td>
+                            <td>{{ cache_info.model_info.parameters }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Optimization:</strong></td>
+                            <td>{{ cache_info.model_info.optimization }}</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-md-6">
+                    <table class="table table-borderless">
+                        <tr>
+                            <td><strong>Memory Usage:</strong></td>
+                            <td>
+                                <span class="badge bg-success">{{ cache_info.model_info.memory_usage }}</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Response Time:</strong></td>
+                            <td>
+                                <span class="badge bg-primary">{{ cache_info.model_info.response_time }}</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Status:</strong></td>
+                            <td>
+                                <span class="badge bg-success">Active</span>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+<!-- Performance Tips -->
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="feature-card">
+            <h4><i class="fas fa-lightbulb text-warning"></i> Performance Optimization Tips</h4>
+            <div class="row">
+                <div class="col-md-6">
+                    <h6><i class="fas fa-check text-success"></i> What's Optimized:</h6>
+                    <ul>
+                        {% for tip in cache_info.performance_tips %}
+                        <li>{{ tip }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <h6><i class="fas fa-info-circle text-info"></i> CPU Optimization Features:</h6>
+                    <ul>
+                        <li><strong>Model Size:</strong> DialoGPT-small (117M) vs Medium (345M)</li>
+                        <li><strong>Memory:</strong> Float32 precision for CPU compatibility</li>
+                        <li><strong>Caching:</strong> Model stays in memory for instant responses</li>
+                        <li><strong>Fallback:</strong> DistilGPT2 (82M) if needed</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Performance Comparison -->
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="feature-card">
+            <h4><i class="fas fa-chart-bar text-primary"></i> Performance Comparison</h4>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Model</th>
+                            <th>Size</th>
+                            <th>Memory</th>
+                            <th>Speed</th>
+                            <th>Quality</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="table-success">
+                            <td><strong>DialoGPT-small</strong></td>
+                            <td>117M params</td>
+                            <td>Low</td>
+                            <td>Fast</td>
+                            <td>Good</td>
+                        </tr>
+                        <tr class="table-warning">
+                            <td>DialoGPT-medium</td>
+                            <td>345M params</td>
+                            <td>High</td>
+                            <td>Slow</td>
+                            <td>Excellent</td>
+                        </tr>
+                        <tr class="table-info">
+                            <td>DistilGPT2</td>
+                            <td>82M params</td>
+                            <td>Very Low</td>
+                            <td>Very Fast</td>
+                            <td>Basic</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Action Buttons -->
+<div class="row mt-5">
+    <div class="col-12 text-center">
+        <h4>Ready to test the optimized AI?</h4>
+        <div class="d-flex justify-content-center flex-wrap gap-3">
+            <a href="{% url 'career_advisor:upload_resume' %}" class="btn btn-primary btn-lg">
+                <i class="fas fa-upload"></i> Upload Resume
+            </a>
+            <a href="{% url 'career_advisor:career_chat' %}" class="btn btn-outline-primary btn-lg">
+                <i class="fas fa-comments"></i> Test AI Chat
+            </a>
+            <a href="{% url 'career_advisor:skills_gap_analysis' %}" class="btn btn-outline-primary btn-lg">
+                <i class="fas fa-search"></i> Skills Gap Analysis
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Technical Details -->
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="feature-card">
+            <h5><i class="fas fa-cogs text-secondary"></i> Technical Implementation</h5>
+            <div class="row">
+                <div class="col-md-6">
+                    <h6>CPU Optimizations:</h6>
+                    <ul class="small">
+                        <li><code>torch_dtype=torch.float32</code> - CPU-optimized precision</li>
+                        <li><code>low_cpu_mem_usage=True</code> - Reduced memory footprint</li>
+                        <li><code>device=-1</code> - Force CPU usage</li>
+                        <li><code>return_full_text=False</code> - Minimal output processing</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <h6>Caching Strategy:</h6>
+                    <ul class="small">
+                        <li><strong>Global Model:</strong> Loaded once, stays in memory</li>
+                        <li><strong>Pipeline Cache:</strong> Resume-specific optimizations</li>
+                        <li><strong>Hash-based:</strong> Content-aware caching</li>
+                        <li><strong>Fallback System:</strong> Graceful degradation</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 
