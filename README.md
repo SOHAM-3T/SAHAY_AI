@@ -137,13 +137,19 @@ python manage.py runserver
 ## **ScreenShots**
 ### Homepage
 ![Homepage](screenshots/homepage.png)
+### Upload Resume
 ![Upload Resume](screenshots/upload_resume_page.png)
 ![Resume Analysis](screenshots/Resume_Analysis.png)
+### Skill Gap Analysis
 ![Skill Gap Analysis](screenshots/Skill_Gap_Analysis.png)
 ![Skill Gap Analysis](screenshots/Skill_Gap_Analysis2.png)
+### Personalised Recommendations
 ![Personalised Recommendations](screenshots/personalised_recommendation.png)
+### Career Path Suggestions
 ![Career Path Suggestions](screenshots/Career_path_suggestions.png)
+### Personalised Road Map
 ![Road Map](screenshots/RoadMap.jpeg)
+### Chatbot
 ![Chatbot](screenshots/Chatbot.jpeg)
 
 ## 🏆 **Hackathon Impact**
