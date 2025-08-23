@@ -1,4 +1,5 @@
 # Sahay AI - AI-Powered Career Mentor
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE) 
 
 ## 🎯 **Problem Statement**
 Many students and professionals struggle with:
