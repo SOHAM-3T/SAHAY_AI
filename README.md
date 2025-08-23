@@ -150,7 +150,7 @@ python manage.py runserver
 ### Personalised Road Map
 ![Road Map](screenshots/RoadMap.jpeg)
 ### Chatbot
-![Chatbot](screenshots/Chatbot.jpeg)
+![Chatbot](screenshots/ChatBot.jpeg)
 
 ## 🏆 **Hackathon Impact**
 
