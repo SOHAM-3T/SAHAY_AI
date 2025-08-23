@@ -168,4 +168,8 @@ python manage.py runserver
 
 **Sahay AI** - Your intelligent career companion powered by AI.
 
-**Access your application at**: http://127.0.0.1:8000
+## 📫 Contact
+
+- **Email:** [soham4net@gmail.com](mailto:soham4net@gmail.com)  
+- **LinkedIn:** [/linkedin.com/in/sohamtripathy/](https://www.linkedin.com/in/sohamtripathy/)  
+- **GitHub:** [github.com/SOHAM-3T](https://github.com/SOHAM-3T)  
