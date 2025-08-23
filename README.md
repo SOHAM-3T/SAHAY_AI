@@ -63,7 +63,7 @@ An intelligent AI-powered career mentor that:
 | Component | Status | Performance |
 |-----------|--------|-------------|
 | PDF Parsing | ✅ Working | 3,118 chars extracted |
-| Resume Analysis | ✅ Working | 75% completeness |
+| Resume Analysis | ✅ Working | 85% completeness |
 | RAG Pipeline | ✅ Working | Optimized for CPU |
 | Web Interface | ✅ Working | Responsive design |
 | Database | ✅ Working | SQLite operational |
@@ -133,6 +133,18 @@ python manage.py runserver
 - Discover suitable career trajectories
 - Get industry insights and guidance
 - Understand role requirements
+
+## **ScreenShots**
+### Homepage
+![Homepage](screenshots/homepage.png)
+![Upload Resume](screenshots/upload_resume_page.png)
+![Resume Analysis](screenshots/Resume_Analysis.png)
+![Skill Gap Analysis](screenshots/Skill_Gap_Analysis.png)
+![Skill Gap Analysis](screenshots/Skill_Gap_Analysis2.png)
+![Personalised Recommendations](screenshots/personalised_recommendation.png)
+![Career Path Suggestions](screenshots/Career_path_suggestions.png)
+![Road Map](screenshots/RoadMap.jpeg)
+![Chatbot](screenshots/Chatbot.jpeg)
 
 ## 🏆 **Hackathon Impact**
 
