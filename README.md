@@ -107,11 +107,10 @@ python manage.py runserver
 ```
 
 ### **Usage**
-1. **Open**: http://127.0.0.1:8000
-2. **Upload Resume**: Use the upload interface
-3. **View Analysis**: See parsed skills, projects, education
-4. **Chat with AI**: Ask career-related questions
-5. **Get Recommendations**: Receive personalized guidance
+1. **Upload Resume**: Use the upload interface
+2. **View Analysis**: See parsed skills, projects, education
+3. **Chat with AI**: Ask career-related questions
+4. **Get Recommendations**: Receive personalized guidance
 
 ## 🎨 **Features Demo**
 
@@ -172,14 +171,12 @@ python manage.py runserver
 ### **Parser Upgrade (Major)**
 - **Before**: PyPDF2 - 0 characters extracted
 - **After**: PyMuPDF - 3,118 characters extracted
-- **Improvement**: ∞% (from 0 to functional)
 
 ### **Performance Optimization**
 - **Model Caching**: Global model caching for speed
 - **CPU Optimization**: torch.float32, low_cpu_mem_usage
 - **ONNX Support**: Optional ONNX runtime for faster inference
 - **Memory Management**: Efficient resource usage
-
 
 ---
 
